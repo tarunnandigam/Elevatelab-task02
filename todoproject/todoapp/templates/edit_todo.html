@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Todo</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Todo</h1>
+        
+        <form method="post" class="edit-form">
+            {% csrf_token %}
+            <input type="text" name="title" value="{{ todo.title }}" required>
+            
+            <label>
+                <input type="checkbox" name="completed" {% if todo.completed %}checked{% endif %}>
+                Mark as completed
+            </label>
+            
+            <div class="form-buttons">
+                <button type="submit" class="btn btn-save">Save Changes</button>
+                <a href="{% url 'todo_list' %}" class="btn btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
